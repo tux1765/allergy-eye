@@ -5,6 +5,7 @@ export const useImageStore = defineStore('image', () => {
 	const image = ref(null)
 	const imageHeight = ref(null)
 	const imageWidth = ref(null)
+	const imageText = ref(null)
 
 	const imageUrl = computed(() => {
 		if (image.value) {
@@ -27,5 +28,5 @@ export const useImageStore = defineStore('image', () => {
 		img.src = imageUrl.value
 	}
 
-	return {image, imageUrl, imageDimensions, imageHeight, imageWidth, assignImage}
+	return {image, imageUrl, imageDimensions, imageHeight, imageWidth, imageText, assignImage}
 })

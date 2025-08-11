@@ -28,12 +28,19 @@
 				</v-card>
 			</v-col>
 			<v-col>
-				<FileUpload />
-				<Tesseract
-					v-if="imgStore.image"
-					:image="imgStore.imageUrl"
-					@scanComplete="updateBbox"
-				/>
+				<v-card>
+					<v-card-text>
+						<FileUpload />
+						<Tesseract
+							v-if="imgStore.image"
+							:image="imgStore.imageUrl"
+							@scanComplete="updateBbox"
+						/>
+					</v-card-text>
+					<v-card-text>
+						{{imgStore.imageText}}
+					</v-card-text>
+				</v-card>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -74,6 +81,7 @@ watch(image, () => {
 
 const bboxs = ref([])
 const updateBbox = (data) => {
+	imgStore.$patch({imageText: data.text})
 	for (const block of data.blocks) {
 		for (const paragraph of block.paragraphs) {
 			for (const line of paragraph.lines) {
