@@ -17,7 +17,7 @@ export const useImageStore = defineStore('image', () => {
 		return {height: imageHeight.value, width: imageWidth.value}
 	})
 
-	function assignImage({newImage}) {
+	const assignImage = ({newImage}) => {
 		image.value = newImage
 
 		const img = new Image()

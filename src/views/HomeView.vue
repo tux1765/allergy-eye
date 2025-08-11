@@ -22,23 +22,23 @@
 							:bbox="bbox"
 						/>
 					</v-img>
-					<div v-else>
-						Upload an image to get started!
-					</div>
 				</v-card>
 			</v-col>
 			<v-col>
-				<v-card>
+				<v-card class="text-center">
+					<v-card-title>
+						Capture or Upload an image!
+					</v-card-title>
 					<v-card-text>
+						<div class="mb-5">
+							<TakePicture />
+						</div>
 						<FileUpload />
 						<Tesseract
 							v-if="imgStore.image"
 							:image="imgStore.imageUrl"
 							@scanComplete="updateBbox"
 						/>
-					</v-card-text>
-					<v-card-text>
-						{{imgStore.imageText}}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -49,6 +49,7 @@
 <script setup>
 import FileUpload from '@/components/FileUpload.vue'
 import WordOverlay from '@/components/WordOverlay.vue'
+import TakePicture from '@/components/TakePicture.vue'
 import Tesseract from '@/components/Tesseract.vue'
 import {onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from 'vue'
 import {useImageStore} from '@/stores/image.js'

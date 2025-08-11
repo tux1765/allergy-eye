@@ -1,5 +1,8 @@
 <template>
-	<v-file-upload v-model="file"/>
+	<v-file-upload
+		v-model="file"
+		density="compact"
+	/>
 </template>
 
 <script setup>
