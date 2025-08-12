@@ -39,6 +39,9 @@
 							:image="imgStore.imageUrl"
 							@scanComplete="updateBbox"
 						/>
+						<div class="mt-2">
+							{{imgStore.imageText}}
+						</div>
 					</v-card-text>
 				</v-card>
 			</v-col>

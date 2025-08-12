@@ -1,3 +1,4 @@
+import {Jimp} from 'jimp'
 import {ref, computed} from 'vue'
 import {defineStore} from 'pinia'
 
@@ -9,10 +10,11 @@ export const useImageStore = defineStore('image', () => {
 
 	const imageUrl = computed(() => {
 		if (image.value) {
-			return window.URL.createObjectURL(image.value)
+			return URL.createObjectURL(image.value)
 		}
 		return null
 	})
+
 	const imageDimensions = computed(() => {
 		return {height: imageHeight.value, width: imageWidth.value}
 	})
