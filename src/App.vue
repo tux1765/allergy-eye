@@ -1,11 +1,11 @@
 <template>
 	<v-layout class="rounded rounded-md">
 		<v-app-bar>
-			<v-app-bar-nav-icon/>
-			<v-app-bar-title>Title</v-app-bar-title>
+			<v-app-bar-nav-icon @click="navDrawer = !navDrawer"/>
+			<v-app-bar-title>Allergy Eye</v-app-bar-title>
 		</v-app-bar>
 
-		<v-navigation-drawer>
+		<v-navigation-drawer v-model="navDrawer">
 			<v-list>
 				<v-list-item>
 					<AddWords />
@@ -27,9 +27,11 @@ import AddWords from '@/components/AddWords.vue'
 import DisplayWords from '@/components/DisplayWords.vue'
 import {useWordStore} from '@/stores/words.js'
 import {RouterView} from 'vue-router'
-import {onMounted} from 'vue'
+import {onMounted, ref} from 'vue'
 
 const wordStore = useWordStore()
+
+const navDrawer = ref(true)
 
 onMounted(() => {
 	wordStore.hydrateWords()
