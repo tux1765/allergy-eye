@@ -1,6 +1,7 @@
 <template>
 	<v-chip
-		v-for="word in wordStore.words"
+		v-for="word of wordStore.words"
+		:key="word"
 		closable
 		@click:close="wordStore.deleteWord({word})"
 	>

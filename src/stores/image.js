@@ -20,6 +20,7 @@ export const useImageStore = defineStore('image', () => {
 
 	const assignImage = ({newImage}) => {
 		image.value = newImage
+		imageText.value = null // reset image text on every new image
 
 		const img = new Image()
 		img.onload = () => {

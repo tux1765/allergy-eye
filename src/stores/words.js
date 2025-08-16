@@ -11,7 +11,7 @@ export const useWordStore = defineStore('words', () => {
 
 	const deleteWord = ({word}) => {
 		words.value = words.value.filter(item => item !== word)
-		localStorage.setItem('words', JSON.stringify(words.value))
+		saveWords()
 	}
 
 	const hydrateWords = () => {
