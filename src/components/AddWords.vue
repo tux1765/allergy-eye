@@ -10,7 +10,7 @@
 				:icon="mdiPlus"
 				text
 				flat
-				@click="wordStore.addWord({word})"
+				@click="wordStore.addWord({word}); word = null"
 			/>
 		</template>
 	</v-text-field>
