@@ -51,14 +51,16 @@
 
 <script setup>
 import FileUpload from '@/components/FileUpload.vue'
-import WordOverlay from '@/components/WordOverlay.vue'
 import TakePicture from '@/components/TakePicture.vue'
 import Tesseract from '@/components/Tesseract.vue'
-import {onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from 'vue'
+import WordOverlay from '@/components/WordOverlay.vue'
 import {useImageStore} from '@/stores/image.js'
+import {useWordStore} from '@/stores/words.js'
 import {storeToRefs} from 'pinia'
+import {onBeforeUnmount, onMounted, ref, useTemplateRef, watch} from 'vue'
 
 const imgStore = useImageStore()
+const wordStore = useWordStore()
 
 const imgCard = useTemplateRef('imgCard')
 const scaledHeight = ref(0)
@@ -89,10 +91,13 @@ const updateBbox = (data) => {
 	for (const block of data.blocks) {
 		for (const paragraph of block.paragraphs) {
 			for (const line of paragraph.lines) {
-				if (line.text.match(/peanut/i)) {
-					for (const word of line.words) {
-						if (word.text.match(/peanut/i)) {
-							bboxs.value.push(word.bbox)
+				for (const ingredient of wordStore.words) {
+					const regexp = new RegExp(ingredient, 'i')
+					if (line.text.match(regexp)) {
+						for (const word of line.words) {
+							if (word.text.match(regexp)) {
+								bboxs.value.push(word.bbox)
+							}
 						}
 					}
 				}

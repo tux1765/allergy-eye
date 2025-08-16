@@ -6,8 +6,13 @@
 		</v-app-bar>
 
 		<v-navigation-drawer>
-			<v-list nav>
-				<v-list-item title="Navigation drawer" link></v-list-item>
+			<v-list>
+				<v-list-item>
+					<AddWords />
+				</v-list-item>
+				<v-list-item>
+					<DisplayWords />
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 
@@ -18,6 +23,16 @@
 </template>
 
 <script setup>
+import AddWords from '@/components/AddWords.vue'
+import DisplayWords from '@/components/DisplayWords.vue'
+import {useWordStore} from '@/stores/words.js'
 import {RouterView} from 'vue-router'
+import {onMounted} from 'vue'
+
+const wordStore = useWordStore()
+
+onMounted(() => {
+	wordStore.hydrateWords()
+})
 </script>
 
