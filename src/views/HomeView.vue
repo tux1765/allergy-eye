@@ -39,6 +39,7 @@
 							:image="imgStore.imageUrl"
 							@scanComplete="updateBbox"
 						/>
+						<Vision v-if="imgStore.image" />
 						<div class="mt-2">
 							{{imgStore.imageText}}
 						</div>
@@ -53,6 +54,7 @@
 import FileUpload from '@/components/FileUpload.vue'
 import TakePicture from '@/components/TakePicture.vue'
 import Tesseract from '@/components/Tesseract.vue'
+import Vision from '@/components/vision.vue'
 import WordOverlay from '@/components/WordOverlay.vue'
 import {useImageStore} from '@/stores/image.js'
 import {useWordStore} from '@/stores/words.js'
